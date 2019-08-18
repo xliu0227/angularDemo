@@ -29,7 +29,7 @@ export class DataTableComponent implements OnInit {
     private dataSer: DataService,
   ) {
     this.page.pageNumber = 0;
-    this.page.size = 10;
+    this.page.size = 5;
     interval(5000).subscribe(() => {
     this.rows = dataSer.getAllData();
     console.log(this.rows);
@@ -41,6 +41,7 @@ export class DataTableComponent implements OnInit {
 
 
   setPage(pageInfo){
+     console.log("trigger set page  " + pageInfo);
     this.page.pageNumber = pageInfo.offset;
     
     // this.dataSer.getResult(this.page).
@@ -48,6 +49,29 @@ export class DataTableComponent implements OnInit {
     //     this.page = pagedData.page;
     //     this.rows = pagedData.data;
     //   });
+  }
+
+
+  onSort(event) {
+    // event was triggered, start sort sequence
+    console.log('Sort Event', event);
+    console.log(event.column.prop);
+    console.log(event.newValue);
+    //this.loading = true;
+    // emulate a server request with a timeout
+    // setTimeout(() => {
+    //   const rows = [...this.rows];
+    //   // this is only for demo purposes, normally
+    //   // your server would return the result for
+    //   // you and you would just set the rows prop
+    //   const sort = event.sorts[0];
+    //   rows.sort((a, b) => {
+    //     return a[sort.prop].localeCompare(b[sort.prop]) * (sort.dir === 'desc' ? -1 : 1);
+    //   });
+
+    //   this.rows = rows;
+    //   this.loading = false;
+    // }, 1000);
   }
 
 }

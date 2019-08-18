@@ -11,29 +11,27 @@ import { Page } from './pageModel/page';
 })
 export class DataService {
   parameterString;
-  //items: Array<dashBoardEntry> = [];
   items;
-  PAGE_LIMIT = 5;
   constructor(
     private http: HttpClient
   ) { }
   
-  // public getResult(page: Page): Observable<PagedData<dashBoardEntry>>{
-  //   const pagedData = new PagedData<dashBoardEntry>();
-  //   page.totalElements = this.items.length;
-  //   page.totalPages = page.totalElements / page.size;
-  //   page.size = this.PAGE_LIMIT;
-  //   let queryParam  = "";
-  //   const start = page.pageNumber * page.size;
-  //   const end = Math.min((start + page.size), page.totalElements);
-  //   for (let i = start; i < end; i++){
-  //       const jsonObj = this.items[i];
-  //       const entry = new dashBoardEntry(jsonObj.accumulated_turnover, jsonObj.account_executive, jsonObj.daily_turnover);
-  //       pagedData.data.push(entry);
-  //   }
-  //   pagedData.page = page;
-  //   return pagedData;
-  // }
+  public getResult(page: Page): Observable<PagedData<dashBoardEntry>>{
+    const baseUrl = "http://rtq.chicheongweng.com:3000/securities";
+    const pagedData = new PagedData<dashBoardEntry>();
+    page.totalElements = this.items.length;
+    page.totalPages = page.totalElements / page.size;
+    let queryParam  = "";
+    const start = page.pageNumber * page.size;
+    const end = Math.min((start + page.size), page.totalElements);
+    for (let i = start; i < end; i++){
+        const jsonObj = this.items[i];
+        const entry = new dashBoardEntry(jsonObj.accumulated_turnover, jsonObj.account_executive, jsonObj.daily_turnover);
+        pagedData.data.push(entry);
+    }
+    pagedData.page = page;
+    return pagedData;
+  }
 
   getAllData(){
     //this.items =[];
