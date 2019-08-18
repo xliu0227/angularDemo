@@ -11,27 +11,6 @@
         [columns]="columns"
         [count] = "page.totalElements"
         [offset] = "page.pageNumber"
-        
-        (sort)="onSort($event)"
         >
-        <!-- <ngx-datatable-column name="Accumulated Turnover" prop ="accumulated_turnover">
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Account Executive">
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Daily Turnover">
-        </ngx-datatable-column> 
-
-        [externalPaging]="true"
-        [externalSorting]="true"
-    
-        
-        [externalPaging]="true"
-        [count] = "page.totalElements"
-        [offset] = "page.pageNumber"
-        [limit] = "page.size"
-        (page)='setPage($event)'
-
-        (page)='setPage($event)'
-    -->
     </ngx-datatable>
 </div>
